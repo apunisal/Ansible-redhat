@@ -1,0 +1,10 @@
+   75  ansible --version
+   76  ansible localhost -m ping
+   79  ansible localhost -m copy -a "content='ansible is good' dest=./motd"
+   80  ansible localhost -m command -a "content='ansible is good' dest=./motd"
+   82  ansible localhost -m command -a "echo -e 'ansible is good' > ./motd"
+   83  cat ./motd 
+   84  ansible-doc -l
+   87  ansible-doc lineinfile
+  109  ansible localhost -m lineinfile -a "line='ansible is very good' regexp='ansible is good' path=motd"
+  110  cat motd 
