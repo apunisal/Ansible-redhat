@@ -1,0 +1,26 @@
+#ansible localhost -m copy -a content='ansible is awesome' dest=./motd2
+localhost | CHANGED => {
+    "changed": true, 
+    "checksum": "e6df5470399fb0e81eddeb4abe1c262cd332d1a4", 
+    "dest": "./motd3", 
+    "gid": 0, 
+    "group": "root", 
+    "md5sum": "1e3125af5cebb365ee3eb7a37b19f826", 
+    "mode": "0644", 
+    "owner": "root", 
+    "secontext": "unconfined_u:object_r:admin_home_t:s0", 
+    "size": 18, 
+    "src": "/root/.ansible/tmp/ansible-tmp-1567764265.26-85809504057147/source", 
+    "state": "file", 
+    "uid": 0
+}
+#cat motd3
+ansible is awesome
+#ansible localhost -m  lineinfile -a "line='ansible is super awesome' regexp='ansible is awesome' dest=./motd2"
+localhost | CHANGED => {
+    "backup": "", 
+    "changed": true, 
+    "msg": "line replaced"
+}
+#cat motd3
+ansible is super awesome
