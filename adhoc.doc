@@ -1,4 +1,20 @@
-#ansible localhost -m copy -a content='ansible is awesome' dest=./motd2
+#ansible --version
+ansible 2.8.4
+  config file = /root/Ansible-redhat/ansible.cfg
+  configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /usr/bin/ansible
+  python version = 2.7.5 (default, Sep 12 2018, 05:31:16) [GCC 4.8.5 20150623 (Red Hat 4.8.5-36)]
+
+#ansible localhost -m ping
+ [WARNING]: No inventory was parsed, only implicit localhost is available
+
+localhost | SUCCESS => {
+    "changed": false, 
+    "ping": "pong"
+}
+
+#ansible localhost -m copy -a content='ansible is good' dest=./motd3
 localhost | CHANGED => {
     "changed": true, 
     "checksum": "e6df5470399fb0e81eddeb4abe1c262cd332d1a4", 
@@ -14,13 +30,16 @@ localhost | CHANGED => {
     "state": "file", 
     "uid": 0
 }
-#cat motd3
-ansible is awesome
-#ansible localhost -m  lineinfile -a "line='ansible is super awesome' regexp='ansible is awesome' dest=./motd2"
+
+#cat motd2
+ansible is good
+
+#ansible localhost -m  lineinfile -a "line='ansible is very good' regexp='ansible is good' dest=./motd2"
 localhost | CHANGED => {
     "backup": "", 
     "changed": true, 
     "msg": "line replaced"
 }
-#cat motd3
-ansible is super awesome
+
+#cat motd2
+ansible is very good
