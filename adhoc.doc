@@ -1,4 +1,4 @@
-#ansible --version
+*#ansible --version*
 ansible 2.8.4
   config file = /root/Ansible-redhat/ansible.cfg
   configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
