@@ -1,0 +1,14 @@
+---
+- name: nfs client side
+  hosts: client
+  tasks:
+  - name: create directory
+    file: 
+      path: /nfsclient
+      state: directory
+  - name: mount
+    mount: 
+      src: servera.lab.example.com:/nfs
+      path: /nfsclient
+      fstype: nfs
+      state: mounted

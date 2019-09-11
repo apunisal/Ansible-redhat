@@ -1,0 +1,31 @@
+---
+- name: nfs server side
+  hosts: f1
+  tasks:
+  - name: create dir
+    file: 
+     path: /nfs 
+     state: directory
+     mode: "u=rwx,g=rwx,o=rwx"
+  
+  - name: edit /etc/exports
+    blockinfile:
+      path: /etc/exports
+      block: |
+        /nfs *.lab.example.com(rw,sync)
+   
+  - name: exportfs -r
+    command: exportfs -arv
+ 
+  - name: nfs
+    service: 
+      name: nfs
+      state: restarted 
+      enabled: yes
+      name: nfs-server
+      state: restarted
+      enabled: yes
+
+  - firewalld: 
+      service: nfs
+      state: enabled      

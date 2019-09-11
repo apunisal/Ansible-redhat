@@ -1,0 +1,32 @@
+---
+- name: Apache HTTPD
+  hosts: server
+  tasks:
+  - name: httpd install
+    yum:
+      name: httpd
+      state: present
+
+  - name: copy html
+    copy:
+      src: index.html
+      dest: /var/www/html/index.html
+
+  - name: httpd restart
+    service:
+      name: httpd
+      state: started
+      enabled: true
+
+  - name: Add Service in firewall
+    firewalld:
+      service: http
+      permanent: yes
+      state: enabled
+
+  - name: Reload firewall 
+    service:
+      name: firewalld
+      state: restarted
+
+
